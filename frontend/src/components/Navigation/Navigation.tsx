@@ -17,40 +17,36 @@ interface NavigationProps {
   onScreenChange: (screen: string) => void;
 }
 
-// Custom striped logo component - creates a vibrant, colorful P logo
-const StripedLogo: React.FC = () => {
-  const colors = [
-    '#FF6B6B', // Vibrant red
-    '#4ECDC4', // Fresh teal
-    '#45B7D1', // Ocean blue
-    '#96CEB4', // Mint green
-    '#FFEAA7', // Warm yellow
-    '#DDA0DD', // Soft plum
-    '#98D8C8', // Seafoam green
-    '#F7DC6F', // Golden yellow
-    '#BB8FCE', // Lavender purple
-    '#85C1E9'  // Sky blue
-  ];
+// Remove StripedLogo and use an image instead
 
-  return (
-    <div className="w-8 h-8 rounded-lg flex items-center justify-center mr-3 overflow-hidden relative">
-      {/* Background with stripes */}
-      <div className="absolute inset-0 flex flex-col">
-        {colors.map((color, index) => (
-          <div
-            key={index}
-            className="flex-1"
-            style={{ backgroundColor: color }}
-          />
-        ))}
-      </div>
-      {/* Letter P overlay */}
-      <span className="text-white font-bold text-lg relative z-10 drop-shadow-lg">
-        P
-      </span>
-    </div>
-  );
-};
+// Modern, client-friendly SVG logo
+const ModernLogo: React.FC = () => (
+  <svg
+    width="48"
+    height="48"
+    viewBox="0 0 48 48"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className="w-12 h-12 mr-3"
+  >
+    <defs>
+      <linearGradient id="p-gradient" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#27aae2" />
+        <stop offset="1" stopColor="#4ecdc4" />
+      </linearGradient>
+      <filter id="shadow" x="0" y="0" width="200%" height="200%">
+        <feDropShadow dx="0" dy="2" stdDeviation="2" floodColor="#000" floodOpacity="0.10" />
+      </filter>
+    </defs>
+    <g filter="url(#shadow)">
+      <path
+        d="M10 6a4 4 0 0 1 4-4h12c8 0 14 5 14 12s-6 12-14 12h-8v10a4 4 0 0 1-4 4h-4V6zM18 8v12h8c5.523 0 10-3.134 10-7s-4.477-7-10-7h-8z"
+        fill="url(#p-gradient)"
+      />
+      <rect x="10" y="36" width="8" height="6" rx="2" fill="#27aae2" />
+    </g>
+  </svg>
+);
 
 export const Navigation = ({ currentScreen, onScreenChange }: NavigationProps): JSX.Element => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -86,7 +82,7 @@ export const Navigation = ({ currentScreen, onScreenChange }: NavigationProps): 
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <div className="flex items-center">
-              <StripedLogo />
+              <ModernLogo />
               <span className="text-xl font-bold text-gray-900 font-['Poppins']">
                 ProjectHub
               </span>
@@ -153,7 +149,7 @@ export const Navigation = ({ currentScreen, onScreenChange }: NavigationProps): 
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <div className="flex items-center">
-              <StripedLogo />
+              <img src="/logo.png" alt="ProjectHub Logo" className="w-16 h-16 mr-3" />
               <span className="text-xl font-bold text-gray-900 font-['Poppins']">
                 ProjectHub
               </span>

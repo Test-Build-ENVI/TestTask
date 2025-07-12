@@ -32,10 +32,10 @@ export const App = (): JSX.Element => {
           path="/"
           element={
             <ProtectedRoute>
-              <div className="min-h-screen bg-gray-50">
-                <Navigation currentScreen={currentScreen} onScreenChange={setCurrentScreen} />
-                {renderScreen()}
-              </div>
+            <div className="min-h-screen bg-gray-50">
+              <Navigation currentScreen={currentScreen} onScreenChange={setCurrentScreen} />
+              {renderScreen()}
+            </div>
             </ProtectedRoute>
           }
         />

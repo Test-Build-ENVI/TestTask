@@ -17,6 +17,41 @@ interface NavigationProps {
   onScreenChange: (screen: string) => void;
 }
 
+// Custom striped logo component - creates a vibrant, colorful P logo
+const StripedLogo: React.FC = () => {
+  const colors = [
+    '#FF6B6B', // Vibrant red
+    '#4ECDC4', // Fresh teal
+    '#45B7D1', // Ocean blue
+    '#96CEB4', // Mint green
+    '#FFEAA7', // Warm yellow
+    '#DDA0DD', // Soft plum
+    '#98D8C8', // Seafoam green
+    '#F7DC6F', // Golden yellow
+    '#BB8FCE', // Lavender purple
+    '#85C1E9'  // Sky blue
+  ];
+
+  return (
+    <div className="w-8 h-8 rounded-lg flex items-center justify-center mr-3 overflow-hidden relative">
+      {/* Background with stripes */}
+      <div className="absolute inset-0 flex flex-col">
+        {colors.map((color, index) => (
+          <div
+            key={index}
+            className="flex-1"
+            style={{ backgroundColor: color }}
+          />
+        ))}
+      </div>
+      {/* Letter P overlay */}
+      <span className="text-white font-bold text-lg relative z-10 drop-shadow-lg">
+        P
+      </span>
+    </div>
+  );
+};
+
 export const Navigation = ({ currentScreen, onScreenChange }: NavigationProps): JSX.Element => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
@@ -38,6 +73,7 @@ export const Navigation = ({ currentScreen, onScreenChange }: NavigationProps): 
   };
 
   const handleLogout = () => {
+    // Clear user session and redirect to login
     localStorage.removeItem('token');
     navigate('/login');
   };
@@ -50,9 +86,7 @@ export const Navigation = ({ currentScreen, onScreenChange }: NavigationProps): 
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <div className="flex items-center">
-              <div className="w-8 h-8 bg-[#27aae2] rounded-lg flex items-center justify-center mr-3">
-                <span className="text-white font-bold text-lg">P</span>
-              </div>
+              <StripedLogo />
               <span className="text-xl font-bold text-gray-900 font-['Poppins']">
                 ProjectHub
               </span>
@@ -119,9 +153,7 @@ export const Navigation = ({ currentScreen, onScreenChange }: NavigationProps): 
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <div className="flex items-center">
-              <div className="w-8 h-8 bg-[#27aae2] rounded-lg flex items-center justify-center mr-3">
-                <span className="text-white font-bold text-lg">P</span>
-              </div>
+              <StripedLogo />
               <span className="text-xl font-bold text-gray-900 font-['Poppins']">
                 ProjectHub
               </span>
